@@ -8,7 +8,6 @@ import { getApiKey } from "../../helpers/getApiKey";
 export class RindegastosService {
 
     async getConvertedAmount(params): Promise<object> { 
-
         // variables para API - api.apilayer.com
         const baseUrl = getApiKey()._BASEURL;
         const apiKey  = getApiKey()._KEY;
@@ -36,7 +35,6 @@ export class RindegastosService {
     }  
 
     getDaysUntilMyBirthday(params): object { 
-        
         // Validación parametros
         if ( (typeof params.birthdate === 'undefined') ) {
             return  {
