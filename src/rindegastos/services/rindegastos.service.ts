@@ -75,7 +75,6 @@ export class RindegastosService {
     }   
 
     getTheNumber(params): object { 
-        
         // variables
         const first = parseInt(params.first);
         const second = parseInt(params.second);
