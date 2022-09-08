@@ -3,6 +3,8 @@
 ## Consideraciones generales.
 - node.js version `v16.16.0`.
 - nest.js version `v9.1.2`.
+- url base `http://localhost:3000/api/`.
+- servicio (unico) `rindegastos`.
 - dependecias - `npm install`.
 - `npm run start:dev`
 
