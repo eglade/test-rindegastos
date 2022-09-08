@@ -26,7 +26,7 @@ export class RindegastosService {
         if ((typeof params.from === 'undefined') || (typeof params.to === 'undefined') || (typeof params.amount === 'undefined') || (typeof amountFromUSD === 'undefined') || (typeof amountToUSD === 'undefined') || isNaN(params.amount) || amount <= 0 ) {
             return {
                 response : 'Error',
-                message : 'Los parametros enviados no son invalidos. Recordar que el monto deben ser numerico mayor a 0',
+                message : "Los parametros enviados no son invalidos. Recordar que el monto deben ser numerico mayor a 0 y las divisas deben estar dentro de lo presentado en 'badge'",
                 example: '.../api/rindegastos/getConvertedAmount?from=CLP&to=USD&amount=200000',
                 badge: apiResponse.data.rates
             }
@@ -71,7 +71,8 @@ export class RindegastosService {
         if((dateIn.length !== 3) || (!birthDate.isValid()) || (!birthDateThisYear.isValid())){
             return  {
                 response : 'Error',
-                message  : 'fecha ingresada no es valida. Formato [DD-MM-AAAA]. Ej ...api/rindegastos/getDaysUntilMyBirthday?birthdate=07-09-1988',
+                message  : 'Fecha ingresada no es valida. Formato [DD-MM-AAAA].',
+                example: '...api/rindegastos/getDaysUntilMyBirthday?birthdate=07-09-1988'
             }
         }
 
@@ -85,8 +86,6 @@ export class RindegastosService {
                 birthDateThisYear : birthDateThisYear.format('L')
             }
         }            
-        
-    
     }   
 
     /**
@@ -126,7 +125,6 @@ export class RindegastosService {
         };
     }     
     
-
     /**
      * Prueba en otra API (comparación de resultados) - DEPRECATED
      */
