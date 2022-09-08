@@ -8,8 +8,6 @@ export class RindegastosController {
 
     /**
      * Servicio que recibe monto en moneda original (ej USD) y retorna conversión a una moneda final (ej CLP).
-     * @param request 
-     * @returns 
      */
     @Get('getConvertedAmount') 
     getConvertedAmount(@Req() request: Request) { 
@@ -18,8 +16,6 @@ export class RindegastosController {
     
     /**
      * Servicio que retorna los días faltan para un determinado cumpleaños, en relacion a la fecha de hoy.
-     * @param request 
-     * @returns 
      */
     @Get('getDaysUntilMyBirthday') 
     getDaysUntilMyBirthday(@Req() request: Request) { 
@@ -28,8 +24,6 @@ export class RindegastosController {
 
     /**
      * Servicio que retorna el producto concatenado de la multiplicación de cada uno de los resultados (los primeros 9).
-     * @param request 
-     * @returns 
      */
     @Get('getTheNumber') 
     getTheNumber(@Req() request: Request) {
