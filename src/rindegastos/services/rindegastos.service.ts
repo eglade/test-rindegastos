@@ -14,9 +14,7 @@ export class RindegastosService {
      */
     async getConvertedAmount(params): Promise<object> { 
         // variables para API - api.apilayer.com
-        const baseUrl = getApiKey._BASEURL;
-        const apiKey  = getApiKey._KEY;
-        const srcUrl  = getApiKey._SRCURL;
+        const {_BASEURL, _APIKEY, _SRCURL} = getApiKey;
         
         // variables
         const amount = parseInt(params.amount);        
@@ -31,13 +29,13 @@ export class RindegastosService {
         }
 
         // consulta API - api.apilayer.com 
-        const apiResponse = await axios.get(`${baseUrl}to=${params.to}&from=${params.from}&amount=${params.amount}&apikey=${apiKey}`);        
+        const apiResponse = await axios.get(`${_BASEURL}to=${params.to}&from=${params.from}&amount=${params.amount}&apikey=${_APIKEY}`);        
                 
         // retorno principal
         return {
             response : 'Exito',
             message : `Los ${params.amount} (${params.from}) ingresados corresponden a ${apiResponse.data.result} (${params.to})`,
-            src: srcUrl,
+            src: _SRCURL,
             data : apiResponse.data
         }
     }  
