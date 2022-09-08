@@ -12,7 +12,7 @@ export class RindegastosController {
     @Get('getConvertedAmount') 
     getConvertedAmount(@Req() request: Request) { 
         return this.rindegastosService.getConvertedAmount(request.query); 
-    }  
+    }     
     
     /**
      * Servicio que retorna los días faltan para un determinado cumpleaños, en relacion a la fecha de hoy.
@@ -30,5 +30,12 @@ export class RindegastosController {
         return this.rindegastosService.getTheNumber(request.query); 
     }      
 
+    /**
+     * Prueba en otra API (comparación de resultados) - DEPRECATED
+     */
+     @Get('getConvertedAmountOtherApi') 
+     getConvertedAmountOtherApi(@Req() request: Request) { 
+         return this.rindegastosService.getConvertedAmountOtherApi(request.query); 
+     }      
     
 }
