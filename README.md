@@ -3,8 +3,8 @@
 ## consideraciones generales.
 - node.js version `v16.16.0`.
 - nest.js version `v9.1.2`.
-- Para instalar dependecias - `npm install`.
-- Para correr -  `npm run start:dev`
+- dependecias - `npm install`.
+- `npm run start:dev`
 - Todo deberia correr en `http://localhost:3000/api/rindegastos/[NOMBRE_REQUERIMIENTO]`
 
 ## Consideraciones requerimiento 1
