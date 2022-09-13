@@ -9,41 +9,48 @@ export class RindegastosService {
 
     /**
      * Servicio que recibe monto en moneda original (ej USD) y retorna conversión a una moneda final (ej CLP).
-     * @param params - parametros para la peticion
+     * @param params - parametros para la petición
      * @returns objeto con resultado de converción
      */
      async getConvertedAmount(params): Promise<object> { 
-        // API - openexchangerates.org
-        const {_BASEURL, _APIKEY, _SRCURL} = getApiKeyOpenex;        
-        const apiResponse = await axios.get(`${_BASEURL}app_id=${_APIKEY}`); 
-        
-        // variables
-        const amountFromUSD = Object.getOwnPropertyDescriptor(apiResponse.data.rates, params.from);
-        const amountToUSD   = Object.getOwnPropertyDescriptor(apiResponse.data.rates, params.to);
-        const amount        = parseInt(params.amount);
-        
-        // validacion parametros
-        if ((typeof params.from === 'undefined') || (typeof params.to === 'undefined') || (typeof params.amount === 'undefined') || (typeof amountFromUSD === 'undefined') || (typeof amountToUSD === 'undefined') || isNaN(params.amount) || amount <= 0 ) {
-            return {
-                response : 'Error',
-                message : "Los parametros enviados no son invalidos. Recordar que el monto deben ser numerico mayor a 0 y las divisas deben estar dentro de lo presentado en 'badge'",
-                example: '.../api/rindegastos/getConvertedAmount?from=CLP&to=USD&amount=200000',
-                badge: apiResponse.data.rates
+
+        try {
+            // API - openexchangerates.org
+            const {_BASEURL, _APIKEY, _SRCURL} = getApiKeyOpenex;        
+            const apiResponse = await axios.get(`${_BASEURL}app_id=${_APIKEY}`); 
+            
+            // variables
+            const amountFromUSD = Object.getOwnPropertyDescriptor(apiResponse.data.rates, params.from);
+            const amountToUSD   = Object.getOwnPropertyDescriptor(apiResponse.data.rates, params.to);
+            const amount        = parseInt(params.amount);
+            
+            // validacion parametros
+            if ((typeof params.from === 'undefined') || (typeof params.to === 'undefined') || (typeof params.amount === 'undefined') || (typeof amountFromUSD === 'undefined') || (typeof amountToUSD === 'undefined') || isNaN(params.amount) || amount <= 0 ) {
+                return {
+                    response : 'Error',
+                    message : "Los parametros enviados no son invalidos. Recordar que el monto deben ser numerico mayor a 0 y las divisas deben estar dentro de lo presentado en 'badge'",
+                    example: '.../api/rindegastos/getConvertedAmount?from=CLP&to=USD&amount=200000',
+                    badge: apiResponse.data.rates
+                }
             }
+
+            // calculo de divisa en base a Dolar
+            const result = parseFloat(((amount/amountFromUSD.value)*amountToUSD.value).toFixed(2));
+            
+            // retorno principal
+            return {
+                response : 'Exito',
+                message : `Los ${params.amount} (${params.from}) ingresados corresponden a ${result} (${params.to})`,
+                src: _SRCURL,
+                data : {
+                    currentValue: amountFromUSD.value,
+                    result : result 
+                }
+            }
+        } catch (error) {
+            return error.message;
         }
 
-        // calculo de divisa en base a Dolar
-        const result = ((amount/amountFromUSD.value)*amountToUSD.value).toFixed(2);
-        
-        // retorno principal
-        return {
-            response : 'Exito',
-            message : `Los ${params.amount} (${params.from}) ingresados corresponden a ${result} (${params.to})`,
-            src: _SRCURL,
-            data : {
-                result : result 
-            }
-        }
     }    
 
     /**

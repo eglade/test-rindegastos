@@ -17,7 +17,7 @@
 ## Requerimiento 2
 - El nombre del endpoint es `api/rindegastos/getDaysUntilMyBirthday`
 - Ejemplo de uso; `http://localhost:3000/api/rindegastos/getDaysUntilMyBirthday?birthdate=15-11-1988`
-- La variable de entrada `birthdate` debe tener formato `AA-MM-AAAA`.
+- La variable de entrada `birthdate` debe tener formato `DD-MM-AAAA`.
  
 ## Requerimiento 3
 - El nombre del endpoint es `api/rindegastos/getTheNumber`
